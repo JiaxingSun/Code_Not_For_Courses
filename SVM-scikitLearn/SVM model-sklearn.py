@@ -23,8 +23,8 @@ train_set_rate = 0.8
 
 pos_label = 0.0 
 neg_label = 1.0 
-pos_name = '坏用户'
-neg_name = '好用户'
+pos_name = 'good'
+neg_name = 'bad'
 
 #parameters setup                                   
 params = {'C': 10, 'kernel': 'rbf' , 'probability': True , 'class_weight':'auto'}      
