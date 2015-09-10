@@ -1,0 +1,31 @@
+
+   
+import spynner 
+import bs4
+import re
+import time
+import os
+import datetime
+import bs4
+
+def main(): 
+	browser = spynner.Browser()
+	now = datetime.datetime.now()
+	now = now.strftime("%Y-%m-%d")
+	if os.path.exists('./'+now) == False:
+		os.makedirs(r'%s/%s'%(os.getcwd(), now))
+#	print os.getcwd()
+	browser.hide()
+	for i in range(0,60):
+		date = (datetime.datetime.now()+datetime.timedelta(days=i)).strftime("%Y-%m-%d")
+		url = "http://english.ctrip.com/chinaflights/shanghai-to-beijing/tickets-sha-bjs/?flighttype=s&dcity=sha&acity=bjs&relddate=0&startdate="+date+"&startday=fri&relweek=0&searchboxArg=t"
+		browser.load(url,500)
+		html = browser.html.encode("utf-8")
+		soup = bs4.BeautifulSoup(html,from_encoding='utf-8')
+		filename = (datetime.datetime.now()+datetime.timedelta(days=i)).strftime("%Y-%m-%d-%H")
+#		print './'+now+'/'+filename+'.html'
+		open('./'+now+'/'+filename+'.html','w+').write(html)#str(soup.prettify().encode('utf-8')))
+	browser.close()
+
+if __name__ == '__main__':
+	main()
